@@ -62,19 +62,7 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `user_id`, `name`, `description`, `category`, `location`, `status`, `photo`, `date`, `created_at`, `proof_photo`) VALUES
-(14, 6, 'Gold Bracelet', 'A thin gold bracelet with a heart-shaped charm. Engraved with initials \"A.K.\"', 'Other', 'Main Building', 'lost', '../assets/uploads/goldbraclet33.jpg', '2024-11-24', '2024-11-25 16:54:00', NULL),
-(15, 6, 'Blue Backpack', 'Navy blue backpack with white stripes. Contains a laptop, charger, and notebooks.', 'Other', 'Library Building (401)', 'lost', '../assets/uploads/blue-bag.jpg', '2024-11-22', '2024-11-25 16:55:05', NULL),
-(16, 6, 'Smartphone (Samsung Galaxy S22)', 'White smartphone with a cracked screen. Has a red case with a keychain attached.', 'Phone', 'New Building, 17th Floor', 'found', '../assets/uploads/phone23.jpg', '2024-11-10', '2024-11-25 16:55:54', NULL),
-(17, 6, 'Car Keys', 'A set of keys with a Toyota logo keychain. Includes house keys and a gym membership tag.', 'Other', 'Civil Building', 'lost', '../assets/uploads/key.jpg', '2024-11-24', '2024-11-25 16:57:44', NULL),
-(18, 5, 'Passport', 'A BD passport in a green leather passport holder. Contains a boarding pass for flight AA345.', 'Other', 'Canteen', 'found', '../assets/uploads/BD_Passport.jpg', '2024-11-24', '2024-11-25 16:58:56', NULL),
-(19, 5, 'Prescription Glasses', 'Black rectangular glasses in a brown leather case. Prescription details are labeled inside.', 'Other', 'Mosque', 'found', '../assets/uploads/glass33.jpg', '2024-11-25', '2024-11-25 16:59:25', NULL),
-(20, 5, 'Laptop (MacBook Air)', 'Silver MacBook Air with a \"Tech Enthusiast\" sticker on the back. No case.', 'Other', 'Shahid Minar Area', 'lost', '../assets/uploads/macbook-air-m3-07.jpg', '2024-11-25', '2024-11-25 17:00:07', NULL),
-(21, 5, 'Umbrella', 'Black collapsible umbrella with a red handle. Brand name \"RainX\" printed on the side.', 'Other', 'Library Building 401', 'lost', '../assets/uploads/Umbrella.jpg', '2024-11-05', '2024-11-25 17:00:33', NULL),
-(22, 5, 'Watch (Rolex)', 'Gold wristwatch with a black leather strap. Engraved with \"To James, with love.\"', 'Other', 'Civil Building', 'found', '../assets/uploads/watch-rolex.jpg', '2024-11-25', '2024-11-25 17:02:06', NULL),
-(23, 5, 'Water Bottle', 'Blue stainless steel water bottle with a \"Hydro Flask\" logo. Contains a name sticker: \"Emily R.\"', 'Other', 'Canteen', 'found', '../assets/uploads/blue.jpg', '2024-11-18', '2024-11-25 17:02:29', NULL),
-(24, 5, 'Notebook', 'A red spiral-bound notebook with handwritten class notes. The name \"John D.\" is written on the first page.', 'Select One', 'New Building, 20th Floor', 'lost', '../assets/uploads/nootbook-printing-services (1).png', '2024-11-25', '2024-11-25 17:07:20', NULL),
-(25, 5, 'ID Card', 'University ID card in a transparent plastic holder. Name on the card: \"Sophia R.\"', 'Other', 'Shahid Minar Area', 'found', '../assets/uploads/Blank-Student-ID-Card-Template.jpg', '2024-11-25', '2024-11-25 17:07:49', NULL);
+
 
 -- --------------------------------------------------------
 
@@ -96,11 +84,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `contact_link`, `created_at`) VALUES
-(5, 'Abu Talha', 'bpitalha@gmail.com', '$2y$10$7ebjQ9AyEQRoDhUwteSmZOX1EcS0SRca0BAzPBEj1wtXBX8G1V8b2', '01765447539', '2024-11-25 16:28:10'),
-(6, 'Md Riaz', 'riazmd582@gmail.com', '$2y$10$ReTy3gxrxdvcX7EdbSGE/OUTtpgPvznF3CBsceopLI1Sn2EVP/VA.', 'facebook.com/mdriazwd', '2024-11-25 16:30:34'),
-(7, 'test@gmail.ocm', 'test@gmail.ocm', '$2y$10$UDeaxMBcP3/2Lf7a1PXp9.KdOjL9NBBIYM7jgKMS1i1UlEiHqcrRK', 'dsdsdsd', '2024-11-26 11:05:16'),
-(8, 'forupemy', 'zaneh@mailinator.com', '$2y$10$OJMdb0CalDgtWP1YgdvD5eDTWRgMe5vVLKvj30eKxZksO0/OxjV9a', 'Architecto vel laborum quis perspiciatis mollit aut est omnis aut consequatur Dolorem sint', '2024-11-26 11:07:08');
+CREATE TABLE thank_you (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+ALTER TABLE thank_you ADD COLUMN recipient_id INT NOT NULL AFTER message;
 
 --
 -- Indexes for dumped tables
